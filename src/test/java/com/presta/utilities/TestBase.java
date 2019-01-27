@@ -7,6 +7,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
@@ -56,15 +57,18 @@ public abstract class TestBase {
     public void setUpTest(){
         report = new ExtentReports();
 
-//        String filePath = System.getProperty("user.dir") + "/test-output/report.html";
         String filePath = System.getProperty("user.dir") + "/test-output/report.html";
+
+//      String filePath = System.getProperty("user.dir") + "\\test-output\\report.html";
+
+        System.out.println("filePath = " + filePath);
 
 
         htmlReporter = new ExtentHtmlReporter(filePath);
 
         report.attachReporter(htmlReporter);
 
-        report.setSystemInfo("Environment", "Stating");
+        report.setSystemInfo("Environment", "Staging");
         report.setSystemInfo("Browser", ConfigurationReader.getProperty("browser"));
         report.setSystemInfo("OS", System.getProperty("os.name"));
         report.setSystemInfo("QA Engineer", "MA");
@@ -76,6 +80,10 @@ public abstract class TestBase {
     }
 
 
+    @AfterTest
+    public void tearDownTest() {
+        report.flush();
+    }
 
 
 

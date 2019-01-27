@@ -6,6 +6,8 @@ import com.presta.utilities.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.fail;
+
 /**
  * Created by macik on 1/26/2019.
  */
@@ -27,6 +29,9 @@ public class AccountInformation extends TestBase{
 
         extentLogger.info("Verifying page title contains 'My account' ");
         Assert.assertTrue(flag,"The title does not contain 'My account' ");
+//        fail();
+        extentLogger.info("Verify that account holder full name is displayed next to the Sign out link");
+        Assert.assertTrue(pages.myAccountPage().header_user_info.isDisplayed());
 
         extentLogger.pass("My account test");
     }
