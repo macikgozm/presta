@@ -33,6 +33,7 @@ public abstract class TestBase {
         driver = Driver.getDriver();
         pages = new Pages();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get(ConfigurationReader.getProperty("url"));
     }
 

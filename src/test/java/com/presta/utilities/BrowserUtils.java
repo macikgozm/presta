@@ -224,6 +224,24 @@ public class BrowserUtils {
     }
 
     /**
+     * Returns all the texts from  a dropdown list
+     * @param select
+     * @return
+     */
+    public static List<String> getElementsTextFromDropdown(Select select) {
+        List<String> elemTexts = new ArrayList<>();
+
+        for (int i = 0; i < select.getOptions().size(); i++){
+            String item = select.getOptions().get(i).getText();
+            elemTexts.add( item );
+        }
+
+        return elemTexts;
+
+    }
+
+
+    /**
      * Clicks on an element using JavaScript
      * @param element
      */
@@ -237,7 +255,8 @@ public class BrowserUtils {
      * Scrolls down to an element using JavaScript
      * @param element
      */
-    public void scrollToElement(WebElement element) {
+    public static void scrollToElement(WebElement element) {
+//    public void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
